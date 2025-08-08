@@ -5,7 +5,6 @@ import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 import connectDB from './config/database';
-import serverless from 'serverless-http';
 import { globalErrorHandler, notFound } from './middleware/errorHandler';
 
 // Load environment variables
@@ -21,113 +20,105 @@ import analyticsRoutes from './routes/analytics';
 import settingsRoutes from './routes/settings';
 import liveClassRoutes from './routes/liveClasses';
 
-// Initialize DB connection once per cold start
-connectDB();
+// This function creates the app without starting a server
+export function createServer(): Application {
+  const app: Application = express();
 
-const app: Application = express();
+  // Connect DB once per cold start
+  connectDB();
 
-// ----------- MIDDLEWARE -----------
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: ["'self'"],
-        styleSrc: ["'self'", "'unsafe-inline'"],
-        scriptSrc: ["'self'"],
-        imgSrc: ["'self'", 'data:', 'https:'],
+  // Security middleware
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          styleSrc: ["'self'", "'unsafe-inline'"],
+          scriptSrc: ["'self'"],
+          imgSrc: ["'self'", 'data:', 'https:'],
+        },
       },
+    })
+  );
+
+  // Rate limiting
+  const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    message: {
+      success: false,
+      message: 'Too many requests from this IP, please try again later.',
     },
-  })
-);
-
-// Rate limiting
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-  message: {
-    success: false,
-    message: 'Too many requests from this IP, please try again later.',
-  },
-});
-app.use('/api/', limiter);
-
-// Strict rate limiting for auth routes
-const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 5,
-  message: {
-    success: false,
-    message: 'Too many authentication attempts, please try again later.',
-  },
-});
-app.use('/api/auth/login', authLimiter);
-app.use('/api/auth/register', authLimiter);
-
-// CORS
-app.use(
-  cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
-  })
-);
-
-// Body parsing
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
-app.use(cookieParser());
-
-// Request logging in dev
-if (process.env.NODE_ENV === 'development') {
-  app.use((req, _res, next) => {
-    console.log(`${req.method} ${req.path} - ${new Date().toISOString()}`);
-    next();
   });
+  app.use('/api/', limiter);
+
+  // Strict rate limiting for auth routes
+  const authLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 5,
+    message: {
+      success: false,
+      message: 'Too many authentication attempts, please try again later.',
+    },
+  });
+  app.use('/api/auth/login', authLimiter);
+  app.use('/api/auth/register', authLimiter);
+
+  // CORS configuration
+  app.use(
+    cors({
+      origin: process.env.CLIENT_URL || 'http://localhost:3000',
+      credentials: true,
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
+    })
+  );
+
+  // Body parsing
+  app.use(express.json({ limit: '10mb' }));
+  app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+  app.use(cookieParser());
+
+  // Logging in dev
+  if (process.env.NODE_ENV === 'development') {
+    app.use((req, _res, next) => {
+      console.log(`${req.method} ${req.path} - ${new Date().toISOString()}`);
+      next();
+    });
+  }
+
+  // Health check
+  app.get('/health', (_req, res) => {
+    res.status(200).json({
+      success: true,
+      message: 'Server is healthy',
+      timestamp: new Date().toISOString(),
+      uptime: process.uptime(),
+    });
+  });
+
+  // Routes
+  app.use('/api/auth', authRoutes);
+  app.use('/api/users', userRoutes);
+  app.use('/api/courses', courseRoutes);
+  app.use('/api/interviews', interviewRoutes);
+  app.use('/api/enrollments', enrollmentRoutes);
+  app.use('/api/analytics', analyticsRoutes);
+  app.use('/api/settings', settingsRoutes);
+  app.use('/api/live-classes', liveClassRoutes);
+
+  // API info
+  app.get('/api', (_req, res) => {
+    res.json({
+      success: true,
+      message: 'GETSKILL API v1.0',
+      version: '1.0.0',
+    });
+  });
+
+  // Error handling
+  app.use(notFound);
+  app.use(globalErrorHandler);
+
+  return app;
 }
-
-// Health check
-app.get('/health', (_req, res) => {
-  res.status(200).json({
-    success: true,
-    message: 'Server is healthy',
-    timestamp: new Date().toISOString(),
-    uptime: process.uptime(),
-  });
-});
-
-// ----------- ROUTES -----------
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/courses', courseRoutes);
-app.use('/api/interviews', interviewRoutes);
-app.use('/api/enrollments', enrollmentRoutes);
-app.use('/api/analytics', analyticsRoutes);
-app.use('/api/settings', settingsRoutes);
-app.use('/api/live-classes', liveClassRoutes);
-
-app.get('/api', (_req, res) => {
-  res.json({
-    success: true,
-    message: 'GETSKILL API v1.0',
-    version: '1.0.0',
-    endpoints: {
-      auth: '/api/auth',
-      users: '/api/users',
-      courses: '/api/courses',
-      interviews: '/api/interviews',
-      enrollments: '/api/enrollments',
-      analytics: '/api/analytics',
-      settings: '/api/settings',
-      liveClasses: '/api/live-classes',
-    },
-    documentation: '/api/docs',
-  });
-});
-
-// ----------- ERROR HANDLING -----------
-app.use(notFound);
-app.use(globalErrorHandler);
-
-// Export serverless handler for Vercel
-module.exports = serverless(app);
