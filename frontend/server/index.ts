@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 import connectDB from './config/database';
+import serverless from 'serverless-http';
 import { globalErrorHandler, notFound } from './middleware/errorHandler';
 
 // Load environment variables
@@ -172,6 +173,5 @@ class Server {
 
 // Start server
 const server = new Server();
-server.listen();
 
-export default server.app;
+module.exports = serverless(server); 
