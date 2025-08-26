@@ -112,7 +112,7 @@ export default function About() {
       bio: "Former Google AI researcher with 10+ years in EdTech. PhD in Computer Science from Stanford.",
       avatar: "SC",
       skills: ["AI/ML", "Product Strategy", "Education"],
-      social: { linkedin: "#", twitter: "#", email: "sarah@getskill.com" }
+      social: { linkedin: "#", twitter: "#", email: "sarah@SkillByte.com" }
     },
     {
       name: "Alex Rodriguez",
@@ -120,7 +120,7 @@ export default function About() {
       bio: "Ex-Microsoft engineer, specialist in scalable learning platforms and real-time systems.",
       avatar: "AR",
       skills: ["System Design", "DevOps", "Backend"],
-      social: { linkedin: "#", github: "#", email: "alex@getskill.com" }
+      social: { linkedin: "#", github: "#", email: "alex@SkillByte.com" }
     },
     {
       name: "Dr. Priya Sharma",
@@ -128,7 +128,7 @@ export default function About() {
       bio: "Leading expert in personalized learning algorithms and natural language processing.",
       avatar: "PS",
       skills: ["AI Research", "NLP", "Data Science"],
-      social: { linkedin: "#", twitter: "#", email: "priya@getskill.com" }
+      social: { linkedin: "#", twitter: "#", email: "priya@SkillByte.com" }
     },
     {
       name: "Michael Park",
@@ -136,7 +136,7 @@ export default function About() {
       bio: "Former Netflix content strategist, now revolutionizing educational content delivery.",
       avatar: "MP",
       skills: ["Content Strategy", "Video Production", "UX"],
-      social: { linkedin: "#", email: "michael@getskill.com" }
+      social: { linkedin: "#", email: "michael@SkillByte.com" }
     }
   ];
 
@@ -219,7 +219,7 @@ export default function About() {
       role: "Software Engineer at Google",
       university: "IIT Delhi",
       course: "Complete DSA & System Design",
-      content: "GETSKILL's AI interview practice was a game-changer. The real-time feedback helped me crack my Google interview!",
+      content: "SkillByte's AI interview practice was a game-changer. The real-time feedback helped me crack my Google interview!",
       rating: 5,
       avatar: "AS",
       achievement: "₹45 LPA Package"
@@ -326,7 +326,7 @@ export default function About() {
               Revolutionizing EdTech with AI
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
-              About GETSKILL
+              About SkillByte
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
               We're on a mission to democratize quality education through AI-powered learning, 
@@ -355,7 +355,7 @@ export default function About() {
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Who We Are</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Born from the vision to bridge the gap between traditional education and industry demands, 
-              GETSKILL combines cutting-edge AI technology with expert pedagogy to create transformative learning experiences.
+              SkillByte combines cutting-edge AI technology with expert pedagogy to create transformative learning experiences.
             </p>
           </div>
 
@@ -364,7 +364,7 @@ export default function About() {
               <h3 className="text-2xl font-bold mb-6">Our Story</h3>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  Founded in 2023 by a team of AI researchers and education experts, GETSKILL was born out of a simple 
+                  Founded in 2023 by a team of AI researchers and education experts, SkillByte was born out of a simple 
                   yet powerful observation: traditional education wasn't keeping pace with the rapidly evolving tech industry.
                 </p>
                 <p>
@@ -538,7 +538,7 @@ export default function About() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Student Success Stories</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Real stories from real students who transformed their careers with GETSKILL
+              Real stories from real students who transformed their careers with SkillByte
             </p>
           </div>
 
@@ -697,7 +697,7 @@ export default function About() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Career?</h2>
           <p className="text-xl opacity-90 mb-8 max-w-3xl mx-auto">
-            Join thousands of successful students who have already transformed their careers with GETSKILL. 
+            Join thousands of successful students who have already transformed their careers with SkillByte. 
             Your journey to success starts here.
           </p>
           
@@ -743,7 +743,7 @@ export default function About() {
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
-                hello@getskill.com
+                hello@SkillByte.com
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />

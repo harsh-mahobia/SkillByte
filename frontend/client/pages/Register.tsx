@@ -98,7 +98,7 @@ export default function Register() {
               </div>
               <CardTitle className="text-2xl">Join as a Student</CardTitle>
               <CardDescription>
-                Start your learning journey with GETSKILL
+                Start your learning journey with SkillByte
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -283,7 +283,7 @@ export default function Register() {
 
             <Card className="border border-gray-200">
               <CardHeader>
-                <CardTitle className="text-lg">Why Choose GETSKILL?</CardTitle>
+                <CardTitle className="text-lg">Why Choose SkillByte?</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2 text-sm text-gray-600">

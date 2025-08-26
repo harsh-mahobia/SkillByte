@@ -119,7 +119,7 @@ export default function TutorRegister() {
           <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center">
             <GraduationCap className="w-10 h-10 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Join GETSKILL as a Tutor</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Join SkillByte as a Tutor</h1>
           <p className="text-xl text-gray-600">Empower students and grow your teaching career</p>
         </div>
 
@@ -130,7 +130,7 @@ export default function TutorRegister() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-purple-800">
                   <Star className="w-5 h-5" />
-                  Why Teach with GETSKILL?
+                  Why Teach with SkillByte?
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -205,7 +205,7 @@ export default function TutorRegister() {
             <CardHeader>
               <CardTitle className="text-2xl">Create Your Tutor Account</CardTitle>
               <CardDescription>
-                Fill in your details to get started as a GETSKILL tutor
+                Fill in your details to get started as a SkillByte tutor
               </CardDescription>
             </CardHeader>
             <CardContent>

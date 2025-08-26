@@ -55,7 +55,6 @@ import {
   ClockIcon,
   VideoIcon,
   PhoneCall,
-  Screen,
   MousePointer,
   Headphones,
   Download,
