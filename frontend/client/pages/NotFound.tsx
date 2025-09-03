@@ -34,7 +34,7 @@ const NotFound = () => {
           </CardHeader>
           <CardContent className="pb-12">
             <p className="text-muted-foreground mb-8">
-              Don't worry, there's still plenty to explore on SkillByte. Head back to discover amazing courses, 
+              Don't worry, there's still plenty to explore on GetSkill. Head back to discover amazing courses, 
               AI tools, and learning opportunities.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

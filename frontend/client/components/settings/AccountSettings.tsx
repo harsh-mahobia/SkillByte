@@ -44,7 +44,7 @@ const AccountSettings: React.FC<AccountSettingsProps> = ({ userData, onUpdate })
         
         const link = document.createElement('a');
         link.href = url;
-        link.download = `SkillByte_data_export_${new Date().toISOString().split('T')[0]}.json`;
+        link.download = `GetSkill_data_export_${new Date().toISOString().split('T')[0]}.json`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

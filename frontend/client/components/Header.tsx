@@ -41,7 +41,7 @@ export function Header() {
               <GraduationCap className="w-5 h-5 text-white" />
             </div>
             <span className="bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
-              SkillByte
+              GetSkill
             </span>
           </Link>
 

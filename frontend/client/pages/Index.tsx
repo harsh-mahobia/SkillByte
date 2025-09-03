@@ -117,7 +117,7 @@ export default function Index() {
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
               Learn from industry experts, practice with AI-powered tools, and land your dream job. 
-              Join thousands of students who've transformed their careers with SkillByte.
+              Join thousands of students who've transformed their careers with GetSkill.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link to="/register">
@@ -301,7 +301,7 @@ export default function Index() {
               Ready to Transform Your Career?
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Join thousands of successful learners who've landed their dream jobs with SkillByte. 
+              Join thousands of successful learners who've landed their dream jobs with GetSkill. 
               Start your journey today with our AI-powered learning platform.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

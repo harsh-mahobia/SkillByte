@@ -50,7 +50,7 @@ export default function Login() {
           </div>
           <CardTitle className="text-2xl">Welcome Back</CardTitle>
           <CardDescription>
-            Sign in to your SkillByte account
+            Sign in to your GetSkill account
           </CardDescription>
         </CardHeader>
         <CardContent>
